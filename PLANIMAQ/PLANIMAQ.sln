@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planimaq.backend", "Planimaq.backend\Planimaq.backend.csproj", "{867FD11D-5084-4EB0-806A-54B5D2188311}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planimaq.Shared", "Planimaq.Shared\Planimaq.Shared.csproj", "{2956C5A6-3318-40C6-9DB7-C4D59C4E0BBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planimaq.Shared", "Planimaq.Shared\Planimaq.Shared.csproj", "{2956C5A6-3318-40C6-9DB7-C4D59C4E0BBC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planimaq.Frontend", "Planimaq.Frontend\Planimaq.Frontend.csproj", "{B1C30CEC-7843-41EE-A8E8-EC50574F4C55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2956C5A6-3318-40C6-9DB7-C4D59C4E0BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2956C5A6-3318-40C6-9DB7-C4D59C4E0BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2956C5A6-3318-40C6-9DB7-C4D59C4E0BBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1C30CEC-7843-41EE-A8E8-EC50574F4C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1C30CEC-7843-41EE-A8E8-EC50574F4C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1C30CEC-7843-41EE-A8E8-EC50574F4C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1C30CEC-7843-41EE-A8E8-EC50574F4C55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
