@@ -20,8 +20,4 @@
     <ProjectReference Include="..\Planimaq.Shared\Planimaq.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UnitsOfWork\Interfaces\" />
-  </ItemGroup>
-
 </Project>
