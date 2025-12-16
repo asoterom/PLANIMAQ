@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace Planimaq.Shared.Entities
 {
-    public class Category :IEntityWithName
+    public class City :IEntityWithName
     {
-        public int Id { get; set; }
+        public int id { get; set; }
 
-        [Display(Name = "Categoría")]
+        [Display(Name = "Ciudad")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener más de {1} caracteres.")]
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
-        public string Name { get; set; } = null!;
+        public string Name { get; set; } = null!;  //para quitar los warning de nulos con esto ya no acepta nulos
+        public int stateId { get; set; }
+        public State State { get; set; } = null!;
+
     }
 }

@@ -4,10 +4,12 @@ using Planimaq.backend.Repositories.Implementations;
 using Planimaq.backend.Repositories.Interfaces;
 using Planimaq.backend.UnitsOfWork.Implementations;
 using Planimaq.backend.UnitsOfWork.Interfaces;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
