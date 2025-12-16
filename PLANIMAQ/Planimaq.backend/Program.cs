@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Planimaq.backend.Data;
+using Planimaq.backend.Repositories.Implementations;
+using Planimaq.backend.Repositories.Interfaces;
+using Planimaq.backend.UnitsOfWork.Implementations;
+using Planimaq.backend.UnitsOfWork.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,9 @@ builder.Services.AddDbContext<DataContext>(
         builder.Configuration.GetConnectionString("LocalConnection")
         );
     });
+
+builder.Services.AddScoped(typeof(IGenericUnitOfWork<>),typeof(GenericUnitOfWork<>));
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 var app = builder.Build();
 
