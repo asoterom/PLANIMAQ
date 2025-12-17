@@ -33,7 +33,30 @@ namespace Planimaq.backend.Data
         {
             if (!_context.Countries.Any())
             {
-                _context.Countries.Add(new Country { Name = "Colombia" });
+                _context.Countries.Add(
+                    new Country {
+                        Name = "Colombia",
+                        States = [ new State() { 
+                            Name = "Antioquia", 
+                            Cities = [ 
+                                new City() { Name = "Medellín" }, 
+                                new City() { Name = "Itagüí" }, 
+                                new City() { Name = "Envigado" }, 
+                                new City() { Name = "Bello" }, 
+                                new City() { Name = "Rionegro" }, ] }, 
+                            new State() { Name = "Bogotá",
+                            Cities = [ 
+                                new City() { Name = "Usaquen" }, 
+                                new City() { Name = "Champinero" }, 
+                                new City() { Name = "Santa fe" }, 
+                                new City() { Name = "Useme" }, 
+                                new City() { Name = "Bosa" }, 
+                            ] 
+                            }, 
+                        ]
+                    }
+                    
+                    );
                 _context.Countries.Add(new Country { Name = "Perú" });
                 await _context.SaveChangesAsync();
 

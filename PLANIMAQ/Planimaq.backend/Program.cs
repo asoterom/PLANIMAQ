@@ -23,7 +23,13 @@ builder.Services.AddDbContext<DataContext>(
 builder.Services.AddTransient<SeedDb>();
 
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>),typeof(GenericUnitOfWork<>));
+builder.Services.AddScoped<ICountriesUnitOfWork, CountriesUnitOfWork>();
+builder.Services.AddScoped<IStatesUnitOfWork, StatesUnitOfWork>();
+
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<IStatesRepository, StatesRepository>();
+builder.Services.AddScoped<ICountriesRepository, CountriesRepository>(); 
+
 
 var app = builder.Build();
 
