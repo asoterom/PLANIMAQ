@@ -1,5 +1,6 @@
 ﻿using Planimaq.backend.Repositories.Interfaces;
 using Planimaq.backend.UnitsOfWork.Interfaces;
+using Planimaq.Shared.DTOs;
 using Planimaq.Shared.Responses;
 
 namespace Planimaq.backend.UnitsOfWork.Implementations
@@ -27,5 +28,11 @@ namespace Planimaq.backend.UnitsOfWork.Implementations
 
         public virtual async Task<ActionResponse<T>> UpdateAsync(T entity) =>
             await _repository.UpdateAsync(entity);
+
+        public virtual async Task<ActionResponse<IEnumerable<T>>> GetAsync(PaginationDTO pagination) => 
+            await _repository.GetAsync(pagination);
+        public virtual async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination) => 
+            await _repository.GetTotalRecordsAsync(pagination); 
+
     }
 }

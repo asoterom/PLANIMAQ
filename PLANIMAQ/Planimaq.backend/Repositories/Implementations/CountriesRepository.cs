@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Planimaq.backend.Data;
+using Planimaq.backend.Helpers;
 using Planimaq.backend.Repositories.Interfaces;
+using Planimaq.Shared.DTOs;
 using Planimaq.Shared.Entities;
 using Planimaq.Shared.Responses;
 
@@ -13,6 +15,21 @@ namespace Planimaq.backend.Repositories.Implementations
         public CountriesRepository(DataContext context) : base(context)
         {
             _context = context;
+        }
+
+        public override async Task<ActionResponse<IEnumerable<Country>>> GetAsync(PaginationDTO pagination)
+        {
+            var queryable = _context.Countries
+                .Include(c => c.States)
+                .AsQueryable();
+            return new ActionResponse<IEnumerable<Country>> 
+            { 
+                WasSuccess = true, 
+                Result = await queryable
+                    .OrderBy(x => x.Name)
+                    .Paginate(pagination)
+                    .ToListAsync() 
+            };
         }
         public async override Task<ActionResponse<IEnumerable<Country>>> GetAsync()
         {

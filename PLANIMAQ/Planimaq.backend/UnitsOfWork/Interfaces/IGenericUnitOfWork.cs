@@ -1,9 +1,12 @@
-﻿using Planimaq.Shared.Responses;
+﻿using Planimaq.Shared.DTOs;
+using Planimaq.Shared.Responses;
 
 namespace Planimaq.backend.UnitsOfWork.Interfaces
 {
     public interface IGenericUnitOfWork<T> where T : class
     {
+        Task<ActionResponse<IEnumerable<T>>> GetAsync(PaginationDTO pagination);
+        Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination);
         Task<ActionResponse<IEnumerable<T>>> GetAsync();
         Task<ActionResponse<T>> AddAsync(T model);
         Task<ActionResponse<T>> UpdateAsync(T model);

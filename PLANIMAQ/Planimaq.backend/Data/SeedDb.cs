@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using Planimaq.Shared.Entities;
 
 namespace Planimaq.backend.Data
@@ -15,8 +16,18 @@ namespace Planimaq.backend.Data
         public async Task SeedAsync()
         {
             await _context.Database.EnsureCreatedAsync();
+            //await CheckCountriesFullAsync();
             await CheckCountriesAsync();
             await CheckCategoriesAsync();
+        }
+
+        private async Task CheckCountriesFullAsync()
+        {
+            if (!_context.Countries.Any())
+            {
+                var CountriesSQLScript = File.ReadAllText("Data\\CountriesStatesCities.sql");
+                await _context.Database.ExecuteSqlRawAsync(CountriesSQLScript);
+            }
         }
 
         private async Task CheckCategoriesAsync()
