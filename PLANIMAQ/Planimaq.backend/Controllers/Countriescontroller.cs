@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Planimaq.backend.Data;
 using Planimaq.backend.UnitsOfWork.Interfaces;
+using Planimaq.Shared.DTOs;
 using Planimaq.Shared.Entities;
 using System.Threading.Tasks;
 
@@ -14,10 +15,23 @@ namespace Planimaq.backend.Controllers
     {
         private readonly ICountriesUnitOfWork _countriesUnitOfWork;
 
-        public CountriesController(IGenericUnitOfWork<Country> unitOfWork,ICountriesUnitOfWork countriesUnitOfWork) : base(unitOfWork)
+        public CountriesController(IGenericUnitOfWork<Country> unitOfWork,
+            ICountriesUnitOfWork countriesUnitOfWork) : base(unitOfWork)
         {
             _countriesUnitOfWork = countriesUnitOfWork;
         }
+
+        [HttpGet("paginated")]
+        public override async Task<IActionResult> GetAsync(PaginationDTO pagination)
+        {
+            var response = await _countriesUnitOfWork.GetAsync(pagination);
+            if (response.WasSuccess)
+            {
+                return Ok(response.Result);
+            }
+            return BadRequest();
+        }
+
 
         [HttpGet]
         public override async Task<IActionResult> GetAsync()

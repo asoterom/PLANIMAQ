@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Planimaq.backend.UnitsOfWork.Interfaces;
+using Planimaq.Shared.DTOs;
 using Planimaq.Shared.Entities;
 
 namespace Planimaq.backend.Controllers
@@ -14,6 +15,29 @@ namespace Planimaq.backend.Controllers
         {
             _statesUnitOfWork = statesUnitOfWork;
         }
+
+        [HttpGet("paginated")]
+        public override async Task<IActionResult> GetAsync([FromQuery] PaginationDTO pagination)
+        {
+            var response = await _statesUnitOfWork.GetAsync(pagination);
+            if (response.WasSuccess)
+            {
+                return Ok(response.Result);
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("totalRecords")]
+        public override async Task<IActionResult> GetTotalRecordsAsync([FromQuery] PaginationDTO pagination)
+        {
+            var action = await _statesUnitOfWork.GetTotalRecordsAsync(pagination);
+            if (action.WasSuccess)
+            {
+                return Ok(action.Result);
+            }
+            return BadRequest();
+        }
+
 
         [HttpGet] 
         public override async Task<IActionResult> GetAsync() { 

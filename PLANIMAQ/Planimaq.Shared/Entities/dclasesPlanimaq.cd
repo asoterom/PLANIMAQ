@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Planimaq.Shared.Entities.Category">
+    <Position X="0.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Category.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Planimaq.Shared.Entities.City">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAQAAAAAAAAAAAAABAAAAgA=</HashCode>
+      <FileName>Entities\City.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Planimaq.Shared.Entities.Configuracion" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAQAAAAAACAAAAAAAAAAAgA=</HashCode>
+      <FileName>Entities\Configuracion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planimaq.Shared.Entities.Country">
+    <Position X="0.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAABAAAAgA=</HashCode>
+      <FileName>Entities\Country.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Planimaq.Shared.Entities.Maestro" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAQAAABAAAAACEAAAAAAAgA=</HashCode>
+      <FileName>Entities\Maestro.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planimaq.Shared.Entities.Notificacion" Collapsed="true">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAQAAAAAACAAAAAEAAAIAgA=</HashCode>
+      <FileName>Entities\Notificacion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planimaq.Shared.Entities.Personal" Collapsed="true">
+    <Position X="4.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IGCABAAQkIkAAiAAAgJAAIAgAEAKgBAGASAAABBhA4g=</HashCode>
+      <FileName>Entities\Personal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planimaq.Shared.Entities.Rol" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Entities\Rol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planimaq.Shared.Entities.State">
+    <Position X="0.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAAAAAAAAAAAAAAAAAAAAQAAAIQAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Entities\State.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Planimaq.Shared.Entities.Usuario" Collapsed="true">
+    <Position X="2.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAQAAAgA=</HashCode>
+      <FileName>Entities\Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planimaq.Shared.Entities.Cargo" Collapsed="true">
+    <Position X="6.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAEAAAEAAABAAAABoA=</HashCode>
+      <FileName>Entities\Cargo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

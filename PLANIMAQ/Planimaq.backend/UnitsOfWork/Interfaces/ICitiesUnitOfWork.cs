@@ -4,13 +4,11 @@ using Planimaq.Shared.Responses;
 
 namespace Planimaq.backend.UnitsOfWork.Interfaces
 {
-    public interface IStatesUnitOfWork
+    public interface ICitiesUnitOfWork
     {
-        Task<ActionResponse<IEnumerable<State>>> GetAsync(PaginationDTO pagination);
+        Task<ActionResponse<IEnumerable<City>>> GetAsync(PaginationDTO pagination);
 
         Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination);
 
-        Task<ActionResponse<State>> GetAsync(int id);
-        Task<ActionResponse<IEnumerable<State>>> GetAsync();
     }
 }
