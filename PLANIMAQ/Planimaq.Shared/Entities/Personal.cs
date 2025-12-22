@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Planimaq.Shared.Entities
 {
@@ -42,6 +38,8 @@ namespace Planimaq.Shared.Entities
         public string spantalontalla_pers { get; set; }
         public string szapatotalla_pers { get; set; }
         public string smailcorp_pers { get; set; }
+        
+        [Precision(18,2)]
         public decimal ncostohora_pers { get; set; }
     }
 }

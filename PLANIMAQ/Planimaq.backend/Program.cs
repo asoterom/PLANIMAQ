@@ -44,7 +44,7 @@ void Seeddata(WebApplication app)
     using (var scope = scopedFactory!.CreateScope())
     {
         var service = scope.ServiceProvider.GetService<SeedDb>(); 
-        service!.SeedAsync().Wait();
+         service!.SeedAsync().Wait();
     }
 }
 
