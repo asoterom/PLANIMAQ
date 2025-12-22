@@ -1,5 +1,6 @@
 using MudBlazor.Services;
 using Planimaq.Frontend.Components;
+using Planimaq.Frontend.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,8 @@ builder.Services.AddMudServices();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri("https://localhost:7077") });
+builder.Services.AddScoped<IRepository, Repository>();
 
 var app = builder.Build();
 
