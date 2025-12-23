@@ -1,0 +1,7 @@
+namespace Planimaq.Frontend.Components.Pages.Countries
+{
+    public partial class CountryEdit
+    {
+
+    }
+}
