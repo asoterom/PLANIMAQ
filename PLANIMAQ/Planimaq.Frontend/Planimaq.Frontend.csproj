@@ -16,4 +16,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Planimaq.Shared\Planimaq.Shared.csproj" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="wwwroot\images\question.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

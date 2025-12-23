@@ -12,7 +12,10 @@ namespace Planimaq.Frontend.Components.Pages.Countries
 
         protected override async Task OnInitializedAsync()
         {
+            
+
             var httpResult  = await Repository.GetAsync<List<Country>>("/api/countries");
+        
             countries = httpResult.Response;
 
         }
