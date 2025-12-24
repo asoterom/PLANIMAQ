@@ -115,7 +115,7 @@ namespace Planimaq.Frontend.Components.Pages.Countries
             { 
                 return; 
             }
-            var responseHttp = await Repository.DeleteAsync($"{baseUrl}/{country.Id}"); 
+            var responseHttp = await Repository.DeleteAsync($"{baseUrl}/{country.id}"); 
             if (responseHttp.Error) 
             { 
                 if (responseHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound) 
