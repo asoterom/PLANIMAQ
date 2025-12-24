@@ -26,6 +26,12 @@ namespace Planimaq.Frontend.Components.Pages.Countries
         { 
             await LoadTotalRecordsAsync(); 
         }
+
+        private void StatesAction(Country country)
+        {
+            NavigationManager.NavigateTo($"/countries/details/{country.id}");
+        }
+
         private async Task LoadTotalRecordsAsync()
         {
             loading = true; 
