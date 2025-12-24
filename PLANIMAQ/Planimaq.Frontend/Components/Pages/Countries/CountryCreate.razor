@@ -1,10 +1,15 @@
-﻿<MudDialog>
+﻿@* <MudDialog>
     <DialogContent>
         <CountryForm Country="country" 
             OnValidSubmit="CreateAsync" 
             ReturnAction="Return" />
     </DialogContent>
-</MudDialog>
+</MudDialog> *@
 
+<MudDialog>
+    <DialogContent>
+        <FormWithName Label="País:" Model="country" OnValidSubmit="CreateAsync" ReturnAction="Return" />
+    </DialogContent>
+</MudDialog>
 
 

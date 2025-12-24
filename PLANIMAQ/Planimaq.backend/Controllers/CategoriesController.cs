@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Planimaq.backend.UnitsOfWork.Interfaces;
+using Planimaq.Shared.DTOs;
 using Planimaq.Shared.Entities;
 
 namespace Planimaq.backend.Controllers
@@ -8,8 +9,35 @@ namespace Planimaq.backend.Controllers
     [Route("api/[controller]")]
     public class CategoriesController : GenericController<Category>
     {
-        public CategoriesController(IGenericUnitOfWork<Category> unitOfWork) : base(unitOfWork)
+        private readonly ICategoriesUnitOfWork _categoriesUnitOfWork;
+
+        public CategoriesController(IGenericUnitOfWork<Category> unit, 
+            ICategoriesUnitOfWork categoriesUnitOfWork) : base(unit)
         {
+            _categoriesUnitOfWork = categoriesUnitOfWork;
         }
+
+        [HttpGet("paginated")]
+        public override async Task<IActionResult> GetAsync([FromQuery] PaginationDTO pagination)
+        {
+            var response = await _categoriesUnitOfWork.GetAsync(pagination);
+            if (response.WasSuccess)
+            {
+                return Ok(response.Result);
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("totalRecords")]
+        public override async Task<IActionResult> GetTotalRecordsAsync([FromQuery] PaginationDTO pagination)
+        {
+            var action = await _categoriesUnitOfWork.GetTotalRecordsAsync(pagination);
+            if (action.WasSuccess)
+            {
+                return Ok(action.Result);
+            }
+            return BadRequest();
+        }
+
     }
 }

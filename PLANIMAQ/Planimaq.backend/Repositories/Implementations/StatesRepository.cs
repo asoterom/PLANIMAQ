@@ -22,6 +22,12 @@ namespace Planimaq.backend.Repositories.Implementations
                 .Where(x => x.Country!.id == pagination.Id)
                 .AsQueryable();
 
+            if (!string.IsNullOrWhiteSpace(pagination.Filter))
+            {
+                queryable = queryable.Where(x => x.Name.ToLower().Contains(pagination.Filter.ToLower()));
+            }
+
+
             return new ActionResponse<IEnumerable<State>>
             {
                 WasSuccess = true,
@@ -37,6 +43,11 @@ namespace Planimaq.backend.Repositories.Implementations
             var queryable = _context.States
                 .Where(x => x.Country!.id == pagination.Id)
                 .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(pagination.Filter))
+            {
+                queryable = queryable.Where(x => x.Name.ToLower().Contains(pagination.Filter.ToLower()));
+            }
 
             double count = await queryable.CountAsync();
             return new ActionResponse<int>
