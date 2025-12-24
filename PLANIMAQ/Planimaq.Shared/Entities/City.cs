@@ -17,7 +17,7 @@ namespace Planimaq.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         public string Name { get; set; } = null!;  //para quitar los warning de nulos con esto ya no acepta nulos
         public int stateId { get; set; }
-        public State State { get; set; } = null!;
+        public State? State { get; set; }
 
     }
 }

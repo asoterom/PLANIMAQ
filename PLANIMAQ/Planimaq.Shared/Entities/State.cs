@@ -18,7 +18,8 @@ namespace Planimaq.Shared.Entities
         public string Name { get; set; } = null!;  //para quitar los warning de nulos con esto ya no acepta nulos
 
         public int CountryId { get; set; }
-        public Country Country { get; set; } = null!;
+        
+        public Country? Country { get; set; }
 
         public ICollection<City>? Cities { get; set; }
 
