@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using Planimaq.Frontend.Components.Shared;
@@ -6,7 +7,7 @@ using Planimaq.Shared.Entities;
 using System.Net;
 
 namespace Planimaq.Frontend.Components.Pages.Categories;
-
+[Authorize(Roles = "Admin")]
 public partial class CategoriesIndex
 {
     private List<Category>? Categories { get; set; }

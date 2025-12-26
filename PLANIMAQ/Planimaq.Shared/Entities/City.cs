@@ -18,6 +18,8 @@ namespace Planimaq.Shared.Entities
         public string Name { get; set; } = null!;  //para quitar los warning de nulos con esto ya no acepta nulos
         public int stateId { get; set; }
         public State? State { get; set; }
+        public ICollection<User>? Users { get; set; }
+
 
     }
 }

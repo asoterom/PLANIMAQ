@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Planimaq.Shared.Entities;
 
 namespace Planimaq.backend.Data
 {
-    public class DataContext : DbContext
+    //public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<User>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { 
 
@@ -14,7 +16,6 @@ namespace Planimaq.backend.Data
         public DbSet<Notificacion> Notificaciones { get; set; }
         public DbSet<Maestro> Maestros { get; set; }
         public DbSet<Personal> Personales { get; set; }
-        public DbSet<Rol> Roles { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
         public DbSet<Category> Categories { get; set; }

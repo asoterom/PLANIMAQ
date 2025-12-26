@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Planimaq.backend.Data;
 using Planimaq.backend.UnitsOfWork.Interfaces;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 namespace Planimaq.backend.Controllers
 {
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     //public class CountriesController:ControllerBase
     public class CountriesController : GenericController<Country>

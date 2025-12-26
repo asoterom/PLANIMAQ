@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Planimaq.backend.UnitsOfWork.Interfaces;
 using Planimaq.Shared.DTOs;
 using Planimaq.Shared.Entities;
@@ -6,6 +8,7 @@ using Planimaq.Shared.Entities;
 namespace Planimaq.backend.Controllers
 {
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     public class CategoriesController : GenericController<Category>
     {

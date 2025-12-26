@@ -1,16 +1,20 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using Planimaq.backend.UnitsOfWork.Interfaces;
 using Planimaq.Shared.Entities;
+using Planimaq.Shared.Enums;
 
 namespace Planimaq.backend.Data
 {
     public class SeedDb
     {
         private readonly DataContext _context;
+        private readonly IUsersUnitOfWork _usersUnitOfWork;
 
-        public SeedDb(DataContext context)
+        public SeedDb(DataContext context,IUsersUnitOfWork usersUnitOfWork)
         {
             _context = context;
+            _usersUnitOfWork = usersUnitOfWork;
         }
 
         public async Task SeedAsync()
@@ -18,11 +22,45 @@ namespace Planimaq.backend.Data
             await _context.Database.EnsureCreatedAsync();
             //await CheckCountriesFullAsync();
             await CheckMaestroAsync();
-            await CheckRolesAsync();
             await CheckConfiguracionesAsync();
             await CheckCountriesAsync();
             await CheckCategoriesAsync();
+            await CheckRolesAsync();
+            await CheckUserAsync("1010", "Juan", "Zuluaga", "zulu@yopmail.com", "322 311 4620", "Calle Luna Calle Sol", UserType.Admin);
+
         }
+
+        private async Task CheckRolesAsync()
+        {
+            await _usersUnitOfWork.CheckRoleAsync(UserType.Admin.ToString());
+            await _usersUnitOfWork.CheckRoleAsync(UserType.User.ToString());
+        }
+
+        private async Task<User> CheckUserAsync(string document, string firstName, string lastName, string email, string phone, string address, UserType userType)
+        {
+            var user = await _usersUnitOfWork.GetUserAsync(email);
+            if (user == null)
+            {
+                user = new User
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    UserName = email,
+                    PhoneNumber = phone,
+                    Address = address,
+                    Document = document,
+                    City = _context.Cities.FirstOrDefault(),
+                    UserType = userType,
+                };
+
+                await _usersUnitOfWork.AddUserAsync(user, "123456");
+                await _usersUnitOfWork.AddUserToRoleAsync(user, userType.ToString());
+            }
+
+            return user;
+        }
+
 
         private async Task CheckMaestroAsync()
         {
@@ -53,16 +91,6 @@ namespace Planimaq.backend.Data
 
         }
 
-        private async Task CheckRolesAsync()
-        {
-            if (! _context.Roles.Any())
-            {
-                _context.Roles.Add(new Rol { Name = "Administrador" });
-                _context.Roles.Add(new Rol { Name = "Técnico" });
-                _context.Roles.Add(new Rol { Name = "Operador" });
-                await _context.SaveChangesAsync();
-            }
-        }
 
         private async Task CheckConfiguracionesAsync()
         {

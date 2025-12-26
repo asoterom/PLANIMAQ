@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using Planimaq.Frontend.Components.Shared;
@@ -8,6 +9,7 @@ using System.Net;
 
 namespace Planimaq.Frontend.Components.Pages.Countries
 {
+    [Authorize(Roles = "Admin")]
     public partial class CountriesIndex
     {
         private List<Country>? Countries { get; set; }
