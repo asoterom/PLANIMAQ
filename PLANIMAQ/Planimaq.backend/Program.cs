@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Planimaq.backend.Data;
+using Planimaq.backend.Helpers;
 using Planimaq.backend.Repositories.Implementations;
 using Planimaq.backend.Repositories.Interfaces;
 using Planimaq.backend.UnitsOfWork.Implementations;
@@ -27,6 +28,7 @@ builder.Services.AddDbContext<DataContext>(
     });
 
 builder.Services.AddTransient<SeedDb>();
+builder.Services.AddScoped<IFileStorage, FileStorage>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(x => x.TokenValidationParameters = new TokenValidationParameters
@@ -42,6 +44,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>),typeof(GenericUnitOfWork<>));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
 
 
 builder.Services.AddScoped<ICategoriesUnitOfWork,CategoriesUnitOfWork>();
