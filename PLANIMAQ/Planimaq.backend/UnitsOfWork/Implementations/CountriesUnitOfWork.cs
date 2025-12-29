@@ -28,5 +28,8 @@ namespace Planimaq.backend.UnitsOfWork.Implementations
 
         public override async Task<ActionResponse<Country>> GetAsync(int id) =>
           await _countriesRepository.GetAsync(id);
+
+        public async Task<IEnumerable<Country>> GetComboAsync() => 
+            await _countriesRepository.GetComboAsync();
     }
 }

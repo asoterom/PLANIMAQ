@@ -3,6 +3,7 @@ using MudBlazor.Services;
 using Planimaq.Frontend.AuthenticationProviders;
 using Planimaq.Frontend.Components;
 using Planimaq.Frontend.Repositories;
+using Planimaq.Frontend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,16 @@ builder.Services.AddRazorComponents()
 //builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri("https://localhost:7077") });
 builder.Services.AddSingleton(_ => new HttpClient { BaseAddress = new Uri("https://localhost:7077") });
 builder.Services.AddAuthorizationCore();
-builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationProviderTest>();
+//builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationProviderTest>();
 builder.Services.AddScoped<IRepository, Repository>();
+builder.Services.AddAuthorizationCore();
+
+builder.Services.AddScoped<AuthenticationProviderJWT>();
+builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationProviderJWT>(x => 
+    x.GetRequiredService<AuthenticationProviderJWT>());
+builder.Services.AddScoped<ILoginService, AuthenticationProviderJWT>(x => 
+    x.GetRequiredService<AuthenticationProviderJWT>());
+
 
 var app = builder.Build();
 

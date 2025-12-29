@@ -18,6 +18,9 @@ namespace Planimaq.backend.UnitsOfWork.Implementations
         public override async Task<ActionResponse<IEnumerable<City>>> GetAsync(PaginationDTO pagination) => 
             await _citiesRepository.GetAsync(pagination);
 
+        public async Task<IEnumerable<City>> GetComboAsync(int stateId) =>
+            await _citiesRepository.GetComboAsync(stateId);
+
         public override async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination) => 
             await _citiesRepository.GetTotalRecordsAsync(pagination);
 

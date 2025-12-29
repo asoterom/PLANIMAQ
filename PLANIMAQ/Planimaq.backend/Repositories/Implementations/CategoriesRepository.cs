@@ -36,6 +36,14 @@ namespace Planimaq.backend.Repositories.Implementations
             };
         }
 
+        public async Task<IEnumerable<Category>> GetComboAsync()
+        {
+            return await _context.Categories
+                .OrderBy(c => c.Name)
+                .ToListAsync();
+        }
+
+
         public override async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination)
         {
             var queryable = _context.Categories.AsQueryable();

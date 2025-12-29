@@ -24,6 +24,14 @@ namespace Planimaq.backend.Controllers
             _countriesUnitOfWork = countriesUnitOfWork;
         }
 
+        [AllowAnonymous]
+        [HttpGet("combo")]
+        public async Task<IActionResult> GetComboAsync()
+        {
+            return Ok(await _countriesUnitOfWork.GetComboAsync());
+        }
+
+
         [HttpGet("totalRecords")]
         public override async Task<IActionResult> GetTotalRecordsAsync([FromQuery] PaginationDTO pagination)
         {

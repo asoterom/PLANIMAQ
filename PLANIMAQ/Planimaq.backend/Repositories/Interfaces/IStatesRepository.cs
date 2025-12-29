@@ -10,8 +10,9 @@ namespace Planimaq.backend.Repositories.Interfaces
 
         Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination);
 
-
         Task<ActionResponse<State>> GetAsync(int id);
         Task<ActionResponse<IEnumerable<State>>> GetAsync();
+        Task<IEnumerable<State>> GetComboAsync(int countryId);
+
     }
 }

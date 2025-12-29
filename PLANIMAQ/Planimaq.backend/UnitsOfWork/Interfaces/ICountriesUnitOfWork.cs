@@ -6,6 +6,7 @@ namespace Planimaq.backend.UnitsOfWork.Interfaces
 {
     public interface ICountriesUnitOfWork
     {
+        Task<IEnumerable<Country>> GetComboAsync();
         Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination);
         Task<ActionResponse<Country>> GetAsync(int id);
         Task<ActionResponse<IEnumerable<Country>>> GetAsync();
