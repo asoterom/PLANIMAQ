@@ -76,10 +76,17 @@ public class AccountsController : ControllerBase
             currentUser.Document = user.Document;
             currentUser.FirstName = user.FirstName;
             currentUser.LastName = user.LastName;
-            currentUser.Address = user.Address;
+            currentUser.FechaNacimiento = user.FechaNacimiento;
+            currentUser.Especialidad = user.Especialidad;
+            currentUser.Brevete = user.Brevete;
+            currentUser.Nacionalidad = user.Nacionalidad;
+            currentUser.CaracteristicaA = user.CaracteristicaA;
+            currentUser.CaracteristicaB = user.CaracteristicaB;
+            currentUser.CaracteristicaC = user.CaracteristicaC;
+            currentUser.UserType = user.UserType;
             currentUser.PhoneNumber = user.PhoneNumber;
             currentUser.Photo = !string.IsNullOrEmpty(user.Photo) && user.Photo != currentUser.Photo ? user.Photo : currentUser.Photo;
-            currentUser.CityId = user.CityId;
+            currentUser.EmpresaId = user.EmpresaId;
 
             var result = await _usersUnitOfWork.UpdateUserAsync(currentUser);
             if (result.Succeeded)
@@ -145,9 +152,16 @@ public class AccountsController : ControllerBase
                 new("Document", user.Document),
                 new("FirstName", user.FirstName),
                 new("LastName", user.LastName),
-                new("Address", user.Address),
+                new("FechaNacimiento",user.FechaNacimiento.ToString() ?? string.Empty),
+                new("Especialidad",user.Especialidad ?? string.Empty),
+                new("Brevete",user.Brevete ?? string.Empty),
+                new("Nacionalidad",user.Nacionalidad ?? string.Empty),
+                new("CaracteristicaA",user.CaracteristicaA ?? string.Empty),
+                new("CaracteristicaB",user.CaracteristicaB ?? string.Empty),
+                new("CaracteristicaC",user.CaracteristicaC ?? string.Empty),
+                //new("Address", user.Address),
                 new("Photo", user.Photo ?? string.Empty),
-                new("CityId", user.CityId.ToString())
+                new("EmpresaId", user.EmpresaId.ToString())
             };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwtKey"]!));

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Planimaq.backend.Data;
 
@@ -11,9 +12,11 @@ using Planimaq.backend.Data;
 namespace Planimaq.backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20260102132057_usuariosplanimaqv2")]
+    partial class usuariosplanimaqv2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -252,26 +255,6 @@ namespace Planimaq.backend.Migrations
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("Planimaq.Shared.Entities.Empresa", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Empresas");
-                });
-
             modelBuilder.Entity("Planimaq.Shared.Entities.Maestro", b =>
                 {
                     b.Property<int>("id")
@@ -449,9 +432,6 @@ namespace Planimaq.backend.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("EmpresaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Especialidad")
                         .HasColumnType("nvarchar(max)");
 
@@ -513,8 +493,6 @@ namespace Planimaq.backend.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Cityid");
-
-                    b.HasIndex("EmpresaId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -639,14 +617,6 @@ namespace Planimaq.backend.Migrations
                         .WithMany("Users")
                         .HasForeignKey("Cityid")
                         .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Planimaq.Shared.Entities.Empresa", "Empresa")
-                        .WithMany("Users")
-                        .HasForeignKey("EmpresaId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Empresa");
                 });
 
             modelBuilder.Entity("Planimaq.Shared.Entities.City", b =>
@@ -657,11 +627,6 @@ namespace Planimaq.backend.Migrations
             modelBuilder.Entity("Planimaq.Shared.Entities.Country", b =>
                 {
                     b.Navigation("States");
-                });
-
-            modelBuilder.Entity("Planimaq.Shared.Entities.Empresa", b =>
-                {
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Planimaq.Shared.Entities.State", b =>

@@ -13,27 +13,24 @@ namespace Planimaq.backend.Data
 
         
         public DbSet<Configuracion> Configuraciones { get; set; }
-        public DbSet<Notificacion> Notificaciones { get; set; }
-        public DbSet<Maestro> Maestros { get; set; }
-        public DbSet<Personal> Personales { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
-
         public DbSet<Category> Categories { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<Empresa> Empresas { get; set; }
+        public DbSet<Maestro> Maestros { get; set; }
+        public DbSet<Notificacion> Notificaciones { get; set; }
         public DbSet<State> States { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             
             modelBuilder.Entity<Configuracion>().HasIndex(c => c.Name).IsUnique();
-
-
-
             modelBuilder.Entity<Category>().HasIndex(c => c.Name).IsUnique();
             modelBuilder.Entity<City>().HasIndex(c => new { c.stateId, c.Name }).IsUnique();
             modelBuilder.Entity<Country>().HasIndex(c => c.Name).IsUnique();
+            modelBuilder.Entity<Empresa>().HasIndex(c => c.Name).IsUnique();
             modelBuilder.Entity<State>().HasIndex(c => new {c.CountryId,c.Name } ).IsUnique();
             
             DisableCascadingDelete(modelBuilder);

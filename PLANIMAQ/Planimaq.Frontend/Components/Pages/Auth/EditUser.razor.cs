@@ -13,9 +13,9 @@ namespace Planimaq.Frontend.Components.Pages.Auth;
 public partial class EditUser
 {
     private User? user;
-    private List<Country>? countries;
-    private List<State>? states;
-    private List<City>? cities;
+    //private List<Country>? countries;
+    //private List<State>? states;
+    //private List<City>? cities;
     private bool loading = true;
     private string? imageUrl;
 
@@ -32,13 +32,13 @@ public partial class EditUser
     protected override async Task OnInitializedAsync()
     {
         await LoadUserAsyc();
-        await LoadCountriesAsync();
-        await LoadStatesAsyn(user!.City!.State!.Country!.id);
-        await LoadCitiesAsyn(user!.City!.State!.id);
+        //await LoadCountriesAsync();
+        //await LoadStatesAsyn(user!.City!.State!.Country!.id);
+        //await LoadCitiesAsyn(user!.City!.State!.id);
 
-        selectedCountry = user!.City!.State!.Country!;
-        selectedState = user.City.State;
-        selectedCity = user.City;
+        //selectedCountry = user!.City!.State!.Country!;
+        //selectedState = user.City.State;
+        //selectedCity = user.City;
 
         if (!string.IsNullOrEmpty(user!.Photo))
         {
@@ -102,102 +102,102 @@ public partial class EditUser
         Snackbar.Add("Por favor llena todos los campos del formulario.", Severity.Warning);
     }
 
-    private async Task LoadCountriesAsync()
-    {
-        var responseHttp = await Repository.GetAsync<List<Country>>("/api/countries/combo");
-        if (responseHttp.Error)
-        {
-            var message = await responseHttp.GetErrorMessageAsync();
-            Snackbar.Add(message!, Severity.Error);
-            return;
-        }
-        countries = responseHttp.Response;
-    }
+    //private async Task LoadCountriesAsync()
+    //{
+    //    var responseHttp = await Repository.GetAsync<List<Country>>("/api/countries/combo");
+    //    if (responseHttp.Error)
+    //    {
+    //        var message = await responseHttp.GetErrorMessageAsync();
+    //        Snackbar.Add(message!, Severity.Error);
+    //        return;
+    //    }
+    //    countries = responseHttp.Response;
+    //}
 
-    private async Task LoadStatesAsyn(int countryId)
-    {
-        var responseHttp = await Repository.GetAsync<List<State>>($"/api/states/combo/{countryId}");
-        if (responseHttp.Error)
-        {
-            var message = await responseHttp.GetErrorMessageAsync();
-            Snackbar.Add(message!, Severity.Error);
-            return;
-        }
-        states = responseHttp.Response;
-    }
+    //private async Task LoadStatesAsyn(int countryId)
+    //{
+    //    var responseHttp = await Repository.GetAsync<List<State>>($"/api/states/combo/{countryId}");
+    //    if (responseHttp.Error)
+    //    {
+    //        var message = await responseHttp.GetErrorMessageAsync();
+    //        Snackbar.Add(message!, Severity.Error);
+    //        return;
+    //    }
+    //    states = responseHttp.Response;
+    //}
 
-    private async Task LoadCitiesAsyn(int stateId)
-    {
-        var responseHttp = await Repository.GetAsync<List<City>>($"/api/cities/combo/{stateId}");
-        if (responseHttp.Error)
-        {
-            var message = await responseHttp.GetErrorMessageAsync();
-            Snackbar.Add(message!, Severity.Error);
-            return;
-        }
-        cities = responseHttp.Response;
-    }
+    //private async Task LoadCitiesAsyn(int stateId)
+    //{
+    //    var responseHttp = await Repository.GetAsync<List<City>>($"/api/cities/combo/{stateId}");
+    //    if (responseHttp.Error)
+    //    {
+    //        var message = await responseHttp.GetErrorMessageAsync();
+    //        Snackbar.Add(message!, Severity.Error);
+    //        return;
+    //    }
+    //    cities = responseHttp.Response;
+    //}
 
-    private async Task CountryChangedAsync(Country country)
-    {
-        selectedCountry = country;
-        selectedState = new State();
-        selectedCity = new City();
-        states = null;
-        cities = null;
-        await LoadStatesAsyn(country.id);
-    }
+    //private async Task CountryChangedAsync(Country country)
+    //{
+    //    selectedCountry = country;
+    //    selectedState = new State();
+    //    selectedCity = new City();
+    //    states = null;
+    //    cities = null;
+    //    await LoadStatesAsyn(country.id);
+    //}
 
-    private async Task StateChangedAsync(State state)
-    {
-        selectedState = state;
-        selectedCity = new City();
-        cities = null;
-        await LoadCitiesAsyn(state.id);
-    }
+    //private async Task StateChangedAsync(State state)
+    //{
+    //    selectedState = state;
+    //    selectedCity = new City();
+    //    cities = null;
+    //    await LoadCitiesAsyn(state.id);
+    //}
 
-    private void CityChanged(City city)
-    {
-        selectedCity = city;
-        user!.CityId = city.id;
-    }
+    //private void CityChanged(City city)
+    //{
+    //    selectedCity = city;
+    //    user!.CityId = city.id;
+    //}
 
-    private async Task<IEnumerable<Country>> SearchCountries(string searchText, CancellationToken token)
-    {
-        await Task.Delay(5);
-        if (string.IsNullOrWhiteSpace(searchText))
-        {
-            return countries!;
-        }
+    //private async Task<IEnumerable<Country>> SearchCountries(string searchText, CancellationToken token)
+    //{
+    //    await Task.Delay(5);
+    //    if (string.IsNullOrWhiteSpace(searchText))
+    //    {
+    //        return countries!;
+    //    }
 
-        return countries!
-            .Where(c => c.Name.Contains(searchText, StringComparison.InvariantCultureIgnoreCase))
-            .ToList();
-    }
+    //    return countries!
+    //        .Where(c => c.Name.Contains(searchText, StringComparison.InvariantCultureIgnoreCase))
+    //        .ToList();
+    //}
 
-    private async Task<IEnumerable<State>> SearchStates(string searchText, CancellationToken token)
-    {
-        await Task.Delay(5);
-        if (string.IsNullOrWhiteSpace(searchText))
-        {
-            return states!;
-        }
+    //private async Task<IEnumerable<State>> SearchStates(string searchText, CancellationToken token)
+    //{
+    //    await Task.Delay(5);
+    //    if (string.IsNullOrWhiteSpace(searchText))
+    //    {
+    //        return states!;
+    //    }
 
-        return states!
-            .Where(c => c.Name.Contains(searchText, StringComparison.InvariantCultureIgnoreCase))
-            .ToList();
-    }
+    //    return states!
+    //        .Where(c => c.Name.Contains(searchText, StringComparison.InvariantCultureIgnoreCase))
+    //        .ToList();
+    //}
 
-    private async Task<IEnumerable<City>> SearchCity(string searchText, CancellationToken token)
-    {
-        await Task.Delay(5);
-        if (string.IsNullOrWhiteSpace(searchText))
-        {
-            return cities!;
-        }
+    //private async Task<IEnumerable<City>> SearchCity(string searchText, CancellationToken token)
+    //{
+    //    await Task.Delay(5);
+    //    if (string.IsNullOrWhiteSpace(searchText))
+    //    {
+    //        return cities!;
+    //    }
 
-        return cities!
-            .Where(c => c.Name.Contains(searchText, StringComparison.InvariantCultureIgnoreCase))
-            .ToList();
-    }
+    //    return cities!
+    //        .Where(c => c.Name.Contains(searchText, StringComparison.InvariantCultureIgnoreCase))
+    //        .ToList();
+    //}
 }

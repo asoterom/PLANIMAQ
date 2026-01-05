@@ -26,10 +26,16 @@ namespace Planimaq.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         public string LastName { get; set; } = null!;
 
-        [Display(Name = "Dirección")]
-        [MaxLength(200, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
-        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
-        public string Address { get; set; } = null!;
+        public DateTime? FechaNacimiento { get; set; }
+      
+        public string? Especialidad { get; set; }
+        public string? Brevete { get; set; } 
+        public string? Nacionalidad { get; set; }
+        public string? CaracteristicaA { get; set; }
+        public string? CaracteristicaB { get; set; }
+        public string? CaracteristicaC { get; set; }
+
+
 
         [Display(Name = "Foto")]
         public string? Photo { get; set; }
@@ -37,11 +43,23 @@ namespace Planimaq.Shared.Entities
         [Display(Name = "Tipo de usuario")]
         public UserType UserType { get; set; }
 
-        public City? City { get; set; }
+        public ICollection<Personal_Adjunto>? personal_Adjuntos { get; set; }
 
-        [Display(Name = "Ciudad")]
+        [Display(Name = "Adjuntos")]
+        public int CertiNumber => personal_Adjuntos == null || personal_Adjuntos.Count == 0 ? 0 : personal_Adjuntos.Count;
+
+
+
+        //[Display(Name = "Dirección")]
+        //[MaxLength(200, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
+        //[Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        //public string Address { get; set; } = null!;
+
+        public Empresa? Empresa { get; set; }
+
+        [Display(Name = "Empresa")]
         [Range(1, int.MaxValue, ErrorMessage = "Debes seleccionar una {0}.")]
-        public int CityId { get; set; }
+        public int EmpresaId { get; set; }
 
         [Display(Name = "Usuario")]
         public string FullName => $"{FirstName} {LastName}";

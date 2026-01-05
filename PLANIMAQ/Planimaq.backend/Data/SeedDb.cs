@@ -21,22 +21,34 @@ namespace Planimaq.backend.Data
         {
             await _context.Database.EnsureCreatedAsync();
             //await CheckCountriesFullAsync();
+            await CheckEmpresaAsync();
             await CheckMaestroAsync();
             await CheckConfiguracionesAsync();
-            await CheckCountriesAsync();
+            //await CheckCountriesAsync();
             await CheckCategoriesAsync();
             await CheckRolesAsync();
-            await CheckUserAsync("1010", "Juan", "Zuluaga", "zulu@yopmail.com", "322 311 4620", "Calle Luna Calle Sol", UserType.Admin);
+            await CheckUserAsync("1010", "Super", "Admin", "superadmin@yopmail.com", "3223114620", UserType.Admin);
 
+        }
+
+        private async Task CheckEmpresaAsync()
+        {
+            if (!_context.Empresas.Any())
+            {
+                _context.Empresas.Add(new Empresa { Name = "Planimaq" });
+                await _context.SaveChangesAsync();
+            }
         }
 
         private async Task CheckRolesAsync()
         {
             await _usersUnitOfWork.CheckRoleAsync(UserType.Admin.ToString());
-            await _usersUnitOfWork.CheckRoleAsync(UserType.User.ToString());
+            await _usersUnitOfWork.CheckRoleAsync(UserType.Tecnico.ToString());
+            await _usersUnitOfWork.CheckRoleAsync(UserType.Operador.ToString());
         }
 
-        private async Task<User> CheckUserAsync(string document, string firstName, string lastName, string email, string phone, string address, UserType userType)
+        private async Task<User> CheckUserAsync(string document, string firstName, string lastName, 
+            string email, string phone, UserType userType)
         {
             var user = await _usersUnitOfWork.GetUserAsync(email);
             if (user == null)
@@ -48,9 +60,8 @@ namespace Planimaq.backend.Data
                     Email = email,
                     UserName = email,
                     PhoneNumber = phone,
-                    Address = address,
                     Document = document,
-                    City = _context.Cities.FirstOrDefault(),
+                    Empresa = _context.Empresas.FirstOrDefault(),
                     UserType = userType,
                 };
 
@@ -143,38 +154,38 @@ namespace Planimaq.backend.Data
             }
         }
 
-        private async Task CheckCountriesAsync()
-        {
-            if (!_context.Countries.Any())
-            {
-                _context.Countries.Add(
-                    new Country {
-                        Name = "Colombia",
-                        States = [ new State() { 
-                            Name = "Antioquia", 
-                            Cities = [ 
-                                new City() { Name = "Medellín" }, 
-                                new City() { Name = "Itagüí" }, 
-                                new City() { Name = "Envigado" }, 
-                                new City() { Name = "Bello" }, 
-                                new City() { Name = "Rionegro" }, ] }, 
-                            new State() { Name = "Bogotá",
-                            Cities = [ 
-                                new City() { Name = "Usaquen" }, 
-                                new City() { Name = "Champinero" }, 
-                                new City() { Name = "Santa fe" }, 
-                                new City() { Name = "Useme" }, 
-                                new City() { Name = "Bosa" }, 
-                            ] 
-                            }, 
-                        ]
-                    }
+        //private async Task CheckCountriesAsync()
+        //{
+        //    if (!_context.Countries.Any())
+        //    {
+        //        _context.Countries.Add(
+        //            new Country {
+        //                Name = "Colombia",
+        //                States = [ new State() { 
+        //                    Name = "Antioquia", 
+        //                    Cities = [ 
+        //                        new City() { Name = "Medellín" }, 
+        //                        new City() { Name = "Itagüí" }, 
+        //                        new City() { Name = "Envigado" }, 
+        //                        new City() { Name = "Bello" }, 
+        //                        new City() { Name = "Rionegro" }, ] }, 
+        //                    new State() { Name = "Bogotá",
+        //                    Cities = [ 
+        //                        new City() { Name = "Usaquen" }, 
+        //                        new City() { Name = "Champinero" }, 
+        //                        new City() { Name = "Santa fe" }, 
+        //                        new City() { Name = "Useme" }, 
+        //                        new City() { Name = "Bosa" }, 
+        //                    ] 
+        //                    }, 
+        //                ]
+        //            }
                     
-                    );
-                _context.Countries.Add(new Country { Name = "Perú" });
-                await _context.SaveChangesAsync();
+        //            );
+        //        _context.Countries.Add(new Country { Name = "Perú" });
+        //        await _context.SaveChangesAsync();
 
-            }
-        }
+        //    }
+        //}
     }
 }

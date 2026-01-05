@@ -62,9 +62,9 @@ namespace Planimaq.backend.Repositories.Implementations
         {
 
             var user = await _context.Users
-                .Include(u => u.City!)
-                .ThenInclude(c => c.State!)
-                .ThenInclude(s => s.Country)
+                .Include(e => e.Empresa!)
+                //.ThenInclude(c => c.State!)
+                //.ThenInclude(s => s.Country)
                 .FirstOrDefaultAsync(x => x.Id == userId.ToString());
             return user!;
 
@@ -88,9 +88,9 @@ namespace Planimaq.backend.Repositories.Implementations
         public async Task<User> GetUserAsync(string email)
         {
             var user = await _context.Users
-            .Include(u => u.City!)
-            .ThenInclude(c => c.State!)
-            .ThenInclude(s => s.Country)
+            .Include(e => e.Empresa!)
+            //.ThenInclude(c => c.State!)
+            //.ThenInclude(s => s.Country)
             .FirstOrDefaultAsync(x => x.Email == email);
             return user!;
         }

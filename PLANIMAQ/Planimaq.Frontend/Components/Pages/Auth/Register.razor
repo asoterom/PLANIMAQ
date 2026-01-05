@@ -1,5 +1,6 @@
 ﻿@page "/Register"
 @using Planimaq.Shared.Entities
+@using Planimaq.Shared.Enums
 
 @if (loading)
 {
@@ -28,13 +29,10 @@ else
                                   @bind-Value="userDTO.PhoneNumber"
                                   For="@(() => userDTO.PhoneNumber)"
                                   InputType="InputType.Telephone" />
-                    <MudTextField Label="Email"
+                    <MudTextField Label="Usuario"
                                   @bind-Value="userDTO.Email"
                                   For="@(() => userDTO.Email)"
                                   InputType="InputType.Email" />
-                    <MudTextField Label="Dirección"
-                                  @bind-Value="userDTO.Address"
-                                  For="@(() => userDTO.Address)" />
                     <MudTextField Label="Contraseña"
                                   InputType="InputType.Password"
                                   @bind-Value="userDTO.Password"
@@ -43,22 +41,55 @@ else
                                   InputType="InputType.Password"
                                   @bind-Value="userDTO.PasswordConfirm"
                                   For="@(() => userDTO.PasswordConfirm)" />
+                    <MudTextField Label="Rol"
+                                  InputType="InputType.Text"
+                                  @bind-Value="userDTO.FechaNacimiento"
+                                  For="@(() => userDTO.FechaNacimiento)" />
+                    <MudTextField Label="F.Nacimiento"
+                                  InputType="InputType.Date"
+                                  @bind-Value="userDTO.FechaNacimiento"
+                                  For="@(() => userDTO.FechaNacimiento)" />
+                    <MudTextField Label="Especialidad"
+                                  @bind-Value="userDTO.Especialidad"
+                                  For="@(() => userDTO.Especialidad)" />
+                    <MudTextField Label="Brevete"
+                                  @bind-Value="userDTO.Brevete"
+                                  For="@(() => userDTO.Brevete)" />
+                    <MudTextField Label="Nacionalidad"
+                                  @bind-Value="userDTO.Nacionalidad"
+                                  For="@(() => userDTO.Nacionalidad)" />
+
                 </MudCardContent>
             </MudItem>
             <MudItem xs="12" sm="6">
                 <MudCardContent>
-                    <MudAutocomplete T="Country"
-                                     Label="País"
-                                     Placeholder="--Seleccione un País--"
-                                     SearchFunc="SearchCountries"
-                                     Value="selectedCountry"
-                                     ValueChanged="CountryChangedAsync"
+                    <MudTextField Label="Característica"
+                                  @bind-Value="userDTO.CaracteristicaA"
+                                  For="@(() => userDTO.CaracteristicaA)" />
+                    <MudTextField Label="Características"
+                                  @bind-Value="userDTO.CaracteristicaB"
+                                  For="@(() => userDTO.CaracteristicaB)" />
+                    <MudTextField Label="Características"
+                                  @bind-Value="userDTO.CaracteristicaC"
+                                  For="@(() => userDTO.CaracteristicaC)" />
+
+                    <MudRadioGroup @bind-Value="UserType.">
+                        <MudRadio Value="Operador" Color="Color.Primary" Dense="true">Operador</MudRadio>
+                        <MudRadio Value="Tecnico" Color="Color.Secondary" Dense="false">Tecnico</MudRadio>
+                    </MudRadioGroup>
+
+                     <MudAutocomplete T="Empresa"
+                                     Label="Empresa"
+                                     Placeholder="--Seleccione una Empresa--"
+                                     SearchFunc="SearchEmpresa"
+                                     Value="selectedempresa"
+                                     ValueChanged="EmpresaChanged"
                                      ToStringFunc="@(e=> e==null?null : $"{e.Name}")">
                         <ItemTemplate Context="itemContext">
                             @itemContext.Name
                         </ItemTemplate>
                     </MudAutocomplete>
-                    <MudAutocomplete T="State"
+                    @*                    <MudAutocomplete T="State"
                                      Label="Estado"
                                      Placeholder="--Seleccione un Estado--"
                                      SearchFunc="SearchStates"
@@ -80,7 +111,7 @@ else
                             @itemContext.Name
                         </ItemTemplate>
                     </MudAutocomplete>
-                </MudCardContent>
+ *@                </MudCardContent>
                 <MudItem xs="12" sm="6">
                     <InputImg Label="Foto" ImageSelected="ImageSelected" ImageURL="@imageUrl" />
                 </MudItem>

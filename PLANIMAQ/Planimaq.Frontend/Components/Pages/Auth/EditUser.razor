@@ -28,14 +28,34 @@ else
                                   @bind-Value="user.PhoneNumber"
                                   For="@(() => user.PhoneNumber)"
                                   InputType="InputType.Telephone" />
-                    <MudTextField Label="Dirección"
-                                  @bind-Value="user.Address"
-                                  For="@(() => user.Address)" />
+                    <MudTextField Label="F.Nacimiento"
+                                  InputType="InputType.Date"
+                                  @bind-Value="user.FechaNacimiento"
+                                  For="@(() => user.FechaNacimiento)" />
+                    <MudTextField Label="Especialidad"
+                                  @bind-Value="user.Especialidad"
+                                  For="@(() => user.Especialidad)" />
+                    <MudTextField Label="Brevete"
+                                  @bind-Value="user.Brevete"
+                                  For="@(() => user.Brevete)" />
+                    <MudTextField Label="Nacionalidad"
+                                  @bind-Value="user.Nacionalidad"
+                                  For="@(() => user.Nacionalidad)" />
                 </MudCardContent>
             </MudItem>
             <MudItem xs="12" sm="6">
                 <MudCardContent>
-                    <MudAutocomplete T="Country"
+                    <MudTextField Label="Caracteristica"
+                                  @bind-Value="user!.CaracteristicaA"
+                                  For="@(() => user!.CaracteristicaA)" />
+                    <MudTextField Label="Dirección"
+                                  @bind-Value="user.CaracteristicaB"
+                                  For="@(() => user.CaracteristicaB)" />
+                    <MudTextField Label="Dirección"
+                                  @bind-Value="user.CaracteristicaC"
+                                  For="@(() => user.CaracteristicaC)" />
+
+@*                     <MudAutocomplete T="Country"
                                      Label="País"
                                      Placeholder="--Seleccione un País--"
                                      SearchFunc="SearchCountries"
@@ -68,7 +88,7 @@ else
                             @itemContext.Name
                         </ItemTemplate>
                     </MudAutocomplete>
-                </MudCardContent>
+ *@                </MudCardContent>
                 <MudItem xs="12" sm="6">
                     <InputImg Label="Foto" ImageSelected="ImageSelected" ImageURL="@imageUrl" />
                 </MudItem>

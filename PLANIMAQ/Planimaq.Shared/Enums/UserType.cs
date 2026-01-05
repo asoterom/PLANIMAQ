@@ -18,7 +18,5 @@ namespace Planimaq.Shared.Enums
         [Description("Operador")]
         Operador,
 
-        [Description("Usuario")]
-        User
     }
 }
